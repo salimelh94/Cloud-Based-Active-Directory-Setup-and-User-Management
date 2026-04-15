@@ -282,7 +282,7 @@ Both VMs must be in the same virtual network (**AD-VNet**) and the same region. 
     * Go to the **Computer Name** tab → click **Change…**
 
 
-     ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/c1f7f29560073a917f8133335b22d85075053ac3/images/14.png)
+     ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/3d561c9638bdbbe9d21f60277f388d4a6b464614/images/15.png)
 
 
       
@@ -306,7 +306,7 @@ Both VMs must be in the same virtual network (**AD-VNet**) and the same region. 
     * Open CMD and type: `whoami`
     * **Expected Output:** `corp\adminuser`
 
-      ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/fed512a746c1606c5b6d7fe3ae5f5808f87048c3/images/12.png)
+      ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/3d561c9638bdbbe9d21f60277f388d4a6b464614/images/16.png)
 
 
 
