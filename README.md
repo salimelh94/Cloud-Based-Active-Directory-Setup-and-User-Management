@@ -116,10 +116,14 @@ Both VMs must be on the same private network.
 1. Search for Virtual Network
    
 2. Click Create
-   
+
+  
 3. Configure:
+   
           ○ Resource Group: AD-Lab
+   
           ○ Name: AD-VNet
+   
           ○ Region: same as Resource Group
   
 4. Leave the default Address Space and Subnet
