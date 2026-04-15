@@ -309,7 +309,42 @@ Both VMs must be in the same virtual network (**AD-VNet**) and the same region. 
       ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/3d561c9638bdbbe9d21f60277f388d4a6b464614/images/16.png)
 
 
+# Step 4: Create Users and Organizational Units (OUs)
 
+### 1. Open Active Directory Users and Computers
+
+* On **VM1 (DC01)**, open **Active Directory Users and Computers (ADUC)**.
+* Path: **Server Manager** → **Tools** → **Active Directory Users and Computers**.
+
+### 2. Create an Organizational Unit (OU)
+
+* Right-click your domain (`corp.local`) → **New** → **Organizational Unit**.
+* **Name:** `TestUsers`
+  
+    ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/165fbeb22758bbb028030891feec4a33ee1141e3/images/17.png)
+
+### 3. Create New Users
+
+Inside the **TestUsers** OU, create the following users:
+* **Alice**
+    * **First name:** Alice → **Last name:** N/A → **User logon name:** `alice` → **Next**.
+    * Set password → Check **"User must change password at next logon"** → **Next** → **Finish**.
+* **Bob**
+    * Repeat the process for **Bob**.
+* **Charlie**
+    * Repeat the process for **Charlie**.
+
+*Note: Ensure all users are added to the **Domain Users** group (this happens by default).*
+
+ ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/165fbeb22758bbb028030891feec4a33ee1141e3/images/18.png)
+
+### 4. Manage Group Membership
+
+* In **ADUC**, right-click a user → **Properties** → **Member Of** tab.
+* Click **Add** to include users in custom groups if needed for specific lab scenarios.
+
+ ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/165fbeb22758bbb028030891feec4a33ee1141e3/images/19.png)
+> This simulates user provisioning and organizational structure, both of which are critical areas monitored by SOC analysts during security investigations.
 
 
 
