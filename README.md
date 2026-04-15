@@ -347,4 +347,73 @@ Inside the **TestUsers** OU, create the following users:
 > This simulates user provisioning and organizational structure, both of which are critical areas monitored by SOC analysts during security investigations.
 
 
+# Step 5: Reset Password & Add User to “Remote Desktop Users” Group
+
+### 1. Reset User Password (on DC01)
+
+* Open **Active Directory Users and Computers**:
+    * **Server Manager** → **Tools** → **Active Directory Users and Computers**.
+* Navigate to: `corp.local` → **TestUsers** → **alice**.
+* Right-click **Alice** → **Reset Password**.
+* **Set a new password.**
+* **UNCHECK:** "User must change password at next logon".
+* Click **OK**.
+
+  ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/c8d33b98ba0cec1bdcafe78a89e7611e2b64c897/images/20.png)
+  
+* *Note: This resolves issues related to changing passwords during initial RDP sessions.*
+
+### 2. Grant RDP Permissions (on CLIENT01)
+
+* Log in to **CLIENT01** using an Administrator account (e.g., `corp\adminuser`).
+* Open **System Properties**:
+    * Press `Win + R`.
+    * Type: `sysdm.cpl` and press **Enter**.
+* Go to the **Remote** tab:
+    * Click **Select Users…**.
+    * Click **Add**.
+    * Enter: `corp\alice`.
+    * Click **Check Names** → **OK** → **OK**.
+
+      ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/c8d33b98ba0cec1bdcafe78a89e7611e2b64c897/images/21.png)
+
+> This process adds Alice to the local **Remote Desktop Users** group, allowing her to log in to the workstation remotely.
+
+
+# Step 6: Test User Accounts
+
+Ensure users can log in and communicate with domain resources.
+
+### 1. Log in with a Domain Account
+
+* On **CLIENT01 (VM2)**, log out of the **Administrator** account.
+* Log in with a new domain account, e.g., `corp\alice`.
+* Enter the username and password created in Step 4.
+
+### 2. Verify Domain Access
+
+* **Check Identity:**
+    * Open **Command Prompt** → run: `whoami`
+
+        ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/e66fa8dd930bbd800061df45946d2d06419798c5/images/22.png)
+
+
+    * **Output:** `corp\alice`
+* **Test Network Access:**
+    * Press `Windows + E` to open **File Explorer**.
+    * Click the address bar at the top and type: `\\DC01` → Press **Enter**.
+    * *Note: You may see a blank window if no folders have been shared yet, but it should connect without an error.*
+* **Test Connectivity:**
+    * Open **Command Prompt**.
+    * Type: `ping <DC01_IP_Address>`
+    * **Expected Result:** You should receive successful replies from the Domain Controller.
+
+
+        ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/e66fa8dd930bbd800061df45946d2d06419798c5/images/23.png)
+
+
+
+
+
+
 
