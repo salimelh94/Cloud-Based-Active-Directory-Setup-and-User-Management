@@ -159,6 +159,8 @@ Create two Windows Server VMs in your account:
 * **Inbound Ports:** RDP (3389)
 * **Notes:** Ensure time sync and DNS settings point back to the DC itself.
 
+  ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/f3fd8eb5c05c12a2347c1b4816199495f924cf7c/images/7.png)
+
 ## 2. VM2 – Client Machine (CLIENT01)
 
 * **Purpose:** Acts as a domain-joined workstation used to test authentication, Group Policies, and user account management.
@@ -178,7 +180,7 @@ Create two Windows Server VMs in your account:
 * **DNS Settings:** Must point to DC01’s private IP before joining the domain
 * **Notes:** Keep OS patched before domain join for secure configuration.
 
----
+![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/f3fd8eb5c05c12a2347c1b4816199495f924cf7c/images/8.png)
 
 ### **Important Requirement**
 
