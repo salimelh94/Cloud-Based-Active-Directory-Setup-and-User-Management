@@ -130,9 +130,64 @@ Both VMs must be on the same private network.
    
 5. Click Review + Create → Create
 
+![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/a7e630f25a6889b0c926e985b0a4fa53bc44b6c4/images/6.png)
+With the Resource Group and VNet ready, you can now proceed to Step 1, where you will
+deploy the Domain Controller and client VM
 
 
 
+# Step 1: Provision Cloud Virtual Machines
+
+Create two Windows Server VMs in your account:
+
+## 1. VM1 – Domain Controller (DC01)
+
+* **Purpose:** Hosts Active Directory Domain Services (AD DS), DNS, and serves as the primary domain controller for the lab environment.
+* **Configuration:**
+    * **OS:** Windows Server 2022
+    * **Size:** B2als_v2
+        * **vCPUs:** 2
+        * **RAM:** 4 GB
+        * **Temp Storage:** 4 GiB
+        * **Network Bandwidth:** 3750 Mbps
+        * **Cost Estimate:** ~$41.17/month
+        * **Reason for Choosing:** Cost-efficient, enough CPU/RAM for AD DS + DNS in a lab, more affordable than B2s/B2as.
+* **Network:** AD-VNet
+* **Subnet:** default
+* **Public IP:** Optional (recommended only for RDP access; use NSG restrictions)
+* **Private IP:** Static (recommended for domain controllers)
+* **Inbound Ports:** RDP (3389)
+* **Notes:** Ensure time sync and DNS settings point back to the DC itself.
+
+## 2. VM2 – Client Machine (CLIENT01)
+
+* **Purpose:** Acts as a domain-joined workstation used to test authentication, Group Policies, and user account management.
+* **Configuration:**
+    * **OS:** Windows 10, Windows 11, or Windows Server 2022
+    * **Size:** B2als_v2
+        * **vCPUs:** 2
+        * **RAM:** 4 GB
+        * **Temp Storage:** 4 GiB
+        * **Network Bandwidth:** 3750 Mbps
+        * **Cost Estimate:** ~$41.17/month
+        * **Reason for Choosing:** Matches DC performance, ensures smooth RDP usage, and is stable for client operations.
+* **Network:** AD-VNet
+* **Subnet:** default
+* **Private IP:** Dynamic is acceptable
+* **Inbound Ports:** RDP (3389)
+* **DNS Settings:** Must point to DC01’s private IP before joining the domain
+* **Notes:** Keep OS patched before domain join for secure configuration.
+
+---
+
+### **Important Requirement**
+
+Both VMs must be in the same virtual network (**AD-VNet**) and the same region. This allows:
+
+* Domain join
+* DNS resolution
+* Group Policy communication
+* Realistic enterprise LAN simulation
 
 
 
