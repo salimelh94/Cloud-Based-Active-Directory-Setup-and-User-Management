@@ -253,6 +253,61 @@ Both VMs must be in the same virtual network (**AD-VNet**) and the same region. 
 * Open **DNS** from **Server Manager** → **Tools** → **DNS** to check that your domain zones are created automatically.
 
 
+# Step 3: Join Client VM to the Domain
+
+### 1. Log in to VM2 (Client machine)
+
+* Follow the same RDP process used for VM1 to connect to **CLIENT01**.
+* Use the local credentials set during the VM creation.
+* **Configure DNS Settings:**
+    * Ensure **CLIENT01’s** DNS Server is set to **DC01’s** private IP.
+
+     ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/c1f7f29560073a917f8133335b22d85075053ac3/images/13.png)
+
+
+
+    * Open **Settings** → **Network & Internet** → **Ethernet** → **Change adapter options**.
+    * Right-click your adapter → **Properties** → **IPv4** → **Properties**.
+    * Select **Use the following DNS server addresses** → **Preferred DNS server** → Enter **DC01's private IP** → **OK**.
+
+
+      ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/c1f7f29560073a917f8133335b22d85075053ac3/images/14.png)
+
+
+
+### 2. Join the Domain
+
+* Open **System Properties**:
+    * Right-click **This PC** → **Properties** → **Advanced system settings**.
+    * Go to the **Computer Name** tab → click **Change…**
+
+
+     ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/c1f7f29560073a917f8133335b22d85075053ac3/images/14.png)
+
+
+      
+* **Member of:**
+    * Select **Domain**.
+    * Enter the domain: `corp.local` → Click **OK**.
+* **Authentication:**
+    * A pop-up will ask for credentials → enter the **Domain Admin** username (`adminuser`) and the password created for **VM1 (DC01)**.
+    * Click **OK**.
+* **Restart:**
+    * A message will appear: *"Welcome to the corp.local domain."*
+    * Click **OK** and then **Restart Now** to apply the changes.
+
+### 3. Verify Domain Membership
+
+* After the reboot, log in with domain credentials:
+    * On the login screen, select **Other User**.
+    * **Username:** `corp\adminuser`
+    * **Password:** (The same password used for DC01).
+* **Confirm Identity via Command Prompt:**
+    * Open CMD and type: `whoami`
+    * **Expected Output:** `corp\adminuser`
+
+      ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/fed512a746c1606c5b6d7fe3ae5f5808f87048c3/images/12.png)
+
 
 
 
