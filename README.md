@@ -107,4 +107,36 @@ Step B: Access the Azure Portal
 4. Click Review + Create → Create
 
  ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/6e8cbffd87023c7303d1c7b85db3e319cb09f00a/images/5.png)
+
+
+## Step D: Create a Virtual Network (VNet)
+
+Both VMs must be on the same private network.
+
+1. Search for Virtual Network
    
+2. Click Create
+   
+3. Configure:
+          ○ Resource Group: AD-Lab
+          ○ Name: AD-VNet
+          ○ Region: same as Resource Group
+  
+4. Leave the default Address Space and Subnet
+   
+5. Click Review + Create → Create
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
