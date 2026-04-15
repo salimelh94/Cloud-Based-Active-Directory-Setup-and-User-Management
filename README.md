@@ -40,3 +40,26 @@ temporary capacity limits are encountered.
 Issue: VM creation fails due to quota or core limits in the free-tier subscription.
 Workaround: Use B-series VM sizes as specified in this lab and stop or deallocate
 unused VMs to free resources.
+
+
+Instructions
+Before creating your Windows VMs, you must set up your Azure environment. Azure’s free
+tier gives you enough credits and resources for this project.
+Step A: Create a Microsoft Azure Free Account
+1. Go to: https://azure.microsoft.com/free
+2. Click Try Azure for Free
+3. Sign in using a Microsoft account
+2
+● If you don’t have one, click Create one!
+4. Provide:
+● Use of Azure Account: For Personal Use
+● Country
+● Name
+● Phone number (SMS verification required)
+● Address Information
+5. Enter payment information
+● Only for identity verification.
+● Only Accepts the following Cards (Credit or Debit)
+○ (Visa, Mastercard, American Express, JCB).
+● You will NOT be charged unless you manually upgrade.
+6. Accept terms → Click Sign Up
