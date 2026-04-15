@@ -193,7 +193,64 @@ Both VMs must be in the same virtual network (**AD-VNet**) and the same region. 
 
 
 
+# Step 2: Configure Domain Controller
 
+### 1. Log in to VM1 (Domain Controller) via RDP
+
+* Go to **Virtual Machines** → select **DC01** → click **Connect**.
+    * Download the RDP file and open it.
+    * Use the credentials you set when creating the VM.
+    * The Remote Desktop session will open the Windows Server desktop.
+ 
+     ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/fed512a746c1606c5b6d7fe3ae5f5808f87048c3/images/9.png)
+
+### 2. Open Server Manager
+
+* Launch **Server Manager** (usually starts automatically; if not, click **Start Menu** → **Server Manager**).
+* Click **Add Roles and Features**.
+* In the **Add Roles and Features Wizard**:
+
+![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/fed512a746c1606c5b6d7fe3ae5f5808f87048c3/images/10.png)
+
+
+    * **Installation Type:** Select *Role-based or feature-based installation* → Next.
+    * **Server Selection:** Select **DC01** → Next.
+    * **Server Roles:** Check **Active Directory Domain Services** → a pop-up will ask to add features → click **Add Features** → Next.
+    * **Features:** Leave default → Next.
+    * **AD DS:** Read description → Next.
+    * **Confirmation:** Check *"Restart the destination server automatically if required"* → click **Install**.
+    * *Note: The installation might take a few minutes.*
+
+### 3. Promote to Domain Controller
+
+* After installation, click the **Notifications flag** in Server Manager → **Promote this server to a domain controller**.
+
+![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/fed512a746c1606c5b6d7fe3ae5f5808f87048c3/images/11.png)
+
+  
+* **Deployment Configuration:**
+    * Choose **Add a new forest** → **Root domain name:** `corp.local` → Next.
+* **Domain Controller Options:**
+    * **Forest and Domain Functional Levels:** Default (Windows Server 2022).
+    * Check **DNS Server** → Next.
+    * Set **DSRM password** (Directory Services Restore Mode). *Remember this password for recovery* → Next.
+* **Additional Options:** Leave default → Next.
+* **Paths:** Leave default (`C:\Windows\NTDS`, etc.) → Next.
+* **Review Options:** Confirm → Next.
+* Click **Install**. The server will automatically reboot after promotion.
+* After reboot, **DC01** is now the Domain Controller for the new forest `corp.local`.
+
+> **Note:** During the domain setup, a domain administrator account named **"adminuser"** is created. This account has Domain Admin privileges and is used throughout the lab for administrative tasks.
+
+### 4. Verify AD DS and DNS
+
+* Log back into **DC01**.
+* Open **Server Manager** → **Tools** → **Active Directory Users and Computers**.
+
+![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/fed512a746c1606c5b6d7fe3ae5f5808f87048c3/images/12.png)
+
+* You should see your domain `corp.local` listed.
+* Open **DNS** from **Server Manager** → **Tools** → **DNS** to check that your domain zones are created automatically.
 
 
 
