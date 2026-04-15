@@ -414,6 +414,141 @@ Ensure users can log in and communicate with domain resources.
 
 
 
+# Step 7: Monitoring
 
+### 1. Review Security Logs on the Domain Controller
+
+* Log in to **DC01** as a domain administrator: `corp\adminuser`.
+* Open **Event Viewer**:
+    * Click **Start Menu** → Search for **Event Viewer** → Open the application.
+* Navigate to: **Event Viewer** → **Windows Logs** → **Security**.
+
+
+    ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/590be65bdfd328abded77868d39476565e9da043/images/24.png)
+
+  
+* *Note: This log contains authentication events, account management activity, and policy changes, which are critical for SOC investigations.*
+
+### 2. Identify Key Active Directory Security Events
+
+Use **Filter Current Log…** (right panel) to search for the following Event IDs:
+
+#### **Authentication Events**
+| Event ID | Description | SOC Relevance |
+| :--- | :--- | :--- |
+| 4624 | Successful logon | Confirms valid user authentication |
+| 4625 | Failed logon | Detects brute-force or password guessing |
+| 4648 | Logon using explicit credentials | Indicates lateral movement attempts |
+
+#### **Account Management Events**
+| Event ID | Description | SOC Relevance |
+| :--- | :--- | :--- |
+| 4720 | User account created | Tracks user provisioning |
+| 4722 | User account enabled | Detects reactivated accounts |
+| 4723 / 4724 | Password change/reset | Monitors credential changes |
+| 4725 | User account disabled | Tracks access revocation |
+| 4726 | User account deleted | Identifies account removal |
+
+#### **Domain & Group Changes**
+| Event ID | Description | SOC Relevance |
+| :--- | :--- | :--- |
+| 4732 | User added to a security group | Privilege escalation monitoring |
+| 4733 | User removed from a security group | Access change tracking |
+| 4735 | Security group modified | Detects group tampering |
+
+> **Important Note: Event ID Variations**
+> Some Windows Security Event IDs may vary depending on the Windows Server version, Client OS, Domain Functional Level, and Audit Policy configuration. For example, authentication events may appear on both the client and DC but with different Logon Types.
+
+### 3. Correlate Events With Lab Actions
+
+Map events to the actions performed earlier in this lab:
+
+| Lab Action | Expected Event |
+| :--- | :--- |
+| Password reset | 4724 |
+| Account logs in | 4624 |
+| Scheduled Task was Updated | 4702 |
+| Special privileges assigned to new logon | 4672 |
+| Group Membership Information | 4627 |
+| A new process has been created | 4688 |
+
+*Note: If an expected Event ID is not found, verify the action was successful and that you are reviewing logs on the correct system (DC01 vs CLIENT01).*
+
+### 4. Export Logs for Analysis
+
+* In **Event Viewer** → **Security**:
+    * Right-click **Security**.
+    * Click **Save All Events As…**.
+    * Save as: `DC01-SecurityLogs.evtx`.
+
+*Analysts often export logs to SIEM platforms such as Splunk, Sentinel, or ELK for centralized analysis and alerting.*
+
+
+## Optional Azure Security Tools (Free-Tier Friendly)
+
+In addition to the native Windows Event Viewer, Azure provides built-in security and
+monitoring tools that can be explored within the free-tier subscription. These tools help
+learners understand how cloud-native security controls integrate with Active Directory
+environments.
+
+Explore additional Azure security features within free-tier credits.
+
+1. Microsoft Defender for Cloud
+   
+Purpose: Cloud security posture management and basic threat protection.
+What can be explored:
+
+● View security recommendations for virtual machines
+
+● Identify exposed management ports (e.g., RDP 3389)
+
+● Review baseline security posture and compliance suggestions
+
+SOC Relevance:
+
+Introduces how security teams identify misconfigurations and prioritize risks in
+cloud-hosted Windows environments. The free tier includes foundational security
+posture assessments. Advanced workload protection is optional and not required
+for this lab.
+
+2. Azure Network Security Groups (NSG)
+
+Purpose: Network-level traffic filtering for cloud resources.
+What can be explored:
+
+● Restrict RDP access to a specific IP range
+
+● Understand inbound vs outbound security rules
+
+● Simulate basic perimeter hardening for domain controllers
+
+SOC Relevance:
+
+Demonstrates how access control and network segmentation reduce attack
+surfaces and support incident response. NSGs are included at no additional cost
+and are fully usable within free-tier subscriptions.
+
+## Summary
+
+By completing this project, learners will:
+
+● Provision and configure a cloud-based Active Directory environment using Microsoft
+Azure, including virtual networks, resource groups, and Windows virtual machines.
+
+● Install and promote a Windows Server to a Domain Controller, creating a new Active
+Directory forest and configuring DNS for enterprise identity management.
+
+● Join a client machine to the domain and verify domain membership, authentication,
+and network communication.
+
+● Create and manage Organizational Units (OUs) and user accounts, simulating
+real-world user provisioning and access management workflows.
+
+● Troubleshoot common Active Directory issues such as DNS misconfigurations,
+domain join failures, and user login problems.
+
+● Develop foundational SOC-relevant skills by understanding how centralized identity,
+authentication events, and domain activity are used to support security monitoring
+and incident investigations.
 
 
