@@ -43,9 +43,10 @@ unused VMs to free resources.
 
 
 ## Instructions
-Instructions
+
 Before creating your Windows VMs, you must set up your Azure environment. Azure’s free
 tier gives you enough credits and resources for this project.
+
 Step A: Create a Microsoft Azure Free Account
 1. Go to: https://azure.microsoft.com/free
 2. Click Try Azure for Free
@@ -75,3 +76,35 @@ Step A: Create a Microsoft Azure Free Account
 ● You will NOT be charged unless you manually upgrade.
 
 6. Accept terms → Click Sign Up
+
+Step B: Access the Azure Portal
+
+1. Go to https://portal.azure.com
+   
+2. Sign in to your account
+   
+3. You should now see the Azure dashboard
+
+   ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/916306209c62c1d3304a974ef1989b5f2acaf0d1/images/3.png)
+
+
+## Step C: Create a Resource Group
+
+1. Search for Resource Groups
+
+ ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/6e8cbffd87023c7303d1c7b85db3e319cb09f00a/images/4.png)
+
+   
+2. Click Create
+3. Configure:
+   
+      ○ Subscription: Free Trial
+   
+      ○ Resource Group Name: AD-Lab
+   
+      ○ Region: your nearest region (e.g., Southeast Asia)
+   
+4. Click Review + Create → Create
+
+ ![images alt](https://github.com/salimelh94/Cloud-Based-Active-Directory-Setup-and-User-Management/blob/6e8cbffd87023c7303d1c7b85db3e319cb09f00a/images/5.png)
+   
